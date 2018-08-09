@@ -14,8 +14,9 @@ class SeparableModelResult(Minimizer):
                  initial_parameter,
                  nnls,
                  equality_constraints,
+                 *args,
                  nan_policy='raise',
-                 *args, **kwargs):
+                 **kwargs):
         self._model = model
         self.nnls = nnls
         self.equality_constraints = equality_constraints
