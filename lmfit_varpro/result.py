@@ -1,7 +1,7 @@
+import numpy as np
 from lmfit import Minimizer
 from lmfit.minimizer import MinimizerResult
 from scipy.optimize import nnls
-import numpy as np
 
 from .util import dot
 from .qr_decomposition import qr_residual
@@ -14,6 +14,7 @@ class SeparableModelResult(Minimizer):
                  initial_parameter,
                  nnls,
                  equality_constraints,
+                 nan_policy='raise',
                  *args, **kwargs):
         self._model = model
         self.nnls = nnls
@@ -21,6 +22,7 @@ class SeparableModelResult(Minimizer):
         self._result = None
         super(SeparableModelResult, self).__init__(self._residual,
                                                    initial_parameter,
+                                                   nan_policy=nan_policy,
                                                    fcn_args=args,
                                                    fcn_kws=kwargs,
                                                    )
