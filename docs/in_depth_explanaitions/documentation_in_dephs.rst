@@ -1,5 +1,3 @@
-.. highlight:: shell
-
 Documentation "how to" in depth
 ===============================
 
@@ -13,9 +11,9 @@ How to use Sphinx in general
 ----------------------------
 
 First you have enter your virtual env (if you don't know how, have a look here:
-:ref:`get-started` or :ref:`virtual-envs-in-depth`)
+:ref:`virtual-envs-in-depth`)
 
-When you are in your virtual env (here called ``glotaran``) navigate to glotarans `docs` folder::
+When you are in your virtual env (here called ``glotaran``) navigate to glotarans ``docs`` folder::
 
     (glotaran)$cd docs
 
@@ -26,7 +24,7 @@ When you are in your virtual env (here called ``glotaran``) navigate to glotaran
            If your Git Bash is missing the `make` functionality you can follow this
            `guide <https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058>`_.
 
-Once you are in the `docs` folder, generating/compiling the documentation is as easy as running::
+Once you are in the ``docs`` folder, generating/compiling the documentation is as easy as running::
 
     (glotaran)$make html
 
@@ -77,7 +75,6 @@ Often used commands (for Windows replace ```make`` with ```make.bat``):
     * ``(glotaran)$make clean html``
     * ``(glotaran)$make help``
 
-.. _make-api-docs:
 
 Generate API Documentation
 --------------------------
@@ -97,7 +94,7 @@ The features are:
     * Examples
 
 If you add ``packages``, ``modules``, ``classes``, ``methods``, ``attributes``,
-``functions`` or ``exceptions``, please read the introduction of :ref:`api-docs-new-entry`.
+``functions`` or ``exceptions``, please read the introduction of :ref:`api-docs-new-entry`: api-docs-new-entry_.
 
 Often used commands (for Windows replace ```make`` with ```make.bat``):
 
@@ -113,7 +110,7 @@ Often used commands (for Windows replace ```make`` with ```make.bat``):
 Api Documentation Creation Helper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The helper Module to generate the API documentation is located at `docs/generate_api_documentation.py`.
+The helper Module to generate the API documentation is located at ``docs/generate_api_documentation.py``.
 
 The functionality is available by calling ``make api_docs`` on a Posix system
 or ``make.bat api_docs`` on Windows.
@@ -123,13 +120,12 @@ If you add ``packages``, ``modules``, ``classes``, ``methods``, ``attributes``,
 or ``make.bat clean_all`` on Windows to see changes in the documentation.
 
 The generation of the API is done by traversing the main package
-`traverse_module` and listing all child modules for autosummary to process
-(see `write_api_documentation`, `api_documentation.rst` and
-`_templates/api_documentation_template.rst`).
+``traverse_module`` and listing all child modules for autosummary to process
+(see ``write_api_documentation``, ``api_documentation.rst`` and
+``_templates/api_documentation_template.rst``).
 
 If the child module is also a package all its contained modules will be listed
-(see `write_known_packages`, `known_packages.rst`, `_templates/known_packages_template.rst` and
-`_templates/autosummary/module.rst`).
+(see ``write_known_packages``, ``known_packages.rst``, ``_templates/known_packages_template.rst`` and ``_templates/autosummary/module.rst``).
 
 To understand how it works in detail the following links might be of help:
 
