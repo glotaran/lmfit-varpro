@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class CompartmentEqualityConstraint(object):
+class CompartmentEqualityConstraint:
     """
     An CompartmentEqualityConstraint adds a penalty to the residual if 2
     compartments of the e matrix differ more than by just a scaling parameter
@@ -9,6 +9,7 @@ class CompartmentEqualityConstraint(object):
 
         penalty = weight * (parameter * sum(c[range, i]) - c[range, j])
     """
+
     def __init__(self, weight, i, j, parameter, erange, crange):
         self.weight = weight
         """Weight factor of the penalty"""

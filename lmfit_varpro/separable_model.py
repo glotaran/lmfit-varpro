@@ -1,13 +1,13 @@
 import warnings
+
 import numpy as np
 
-from .qr_decomposition import qr_coefficents
-from .result import SeparableModelResult
-from .util import dot
+from lmfit_varpro.qr_decomposition import qr_coefficents
+from lmfit_varpro.result import SeparableModelResult
+from lmfit_varpro.util import dot
 
 
-class SeparableModel(object):
-
+class SeparableModel:
     def c_matrix(self, parameter, *args, **kwargs):
         raise NotImplementedError
 
@@ -27,23 +27,28 @@ class SeparableModel(object):
             if "noise_seed" in kwargs:
                 noise_seed = kwargs["noise_seed"]
                 if not isinstance(noise_seed, int):
-                    warnings.warn("Warning noise_seed should be integer, seed"
-                                  " value of {} reduced to {}"
-                                  .format(noise_seed, int(noise_seed)))
+                    warnings.warn(
+                        "Warning noise_seed should be integer, seed"
+                        " value of {} reduced to {}".format(noise_seed, int(noise_seed))
+                    )
                     noise_seed = int(noise_seed)
                 np.random.seed(noise_seed)
-            std_dev = kwargs["noise_std_dev"] if "noise_std_dev" in kwargs \
-                else 1.0
+            std_dev = kwargs["noise_std_dev"] if "noise_std_dev" in kwargs else 1.0
             res = np.random.normal(res, std_dev)
         return res
 
-    def fit(self, initial_parameter, nnls, constraints, *args, nan_policy='raise', **kwargs):
-        result = SeparableModelResult(self,
-                                      initial_parameter,
-                                      nnls,
-                                      constraints,
-                                      nan_policy=nan_policy,
-                                      *args, **kwargs)
+    def fit(
+        self, initial_parameter, nnls, constraints, *args, nan_policy="raise", **kwargs
+    ):
+        result = SeparableModelResult(
+            self,
+            initial_parameter,
+            nnls,
+            constraints,
+            nan_policy=nan_policy,
+            *args,
+            **kwargs
+        )
         result.fit(initial_parameter, *args, **kwargs)
         return result
 
@@ -56,8 +61,6 @@ class SeparableModel(object):
 
         e_matrix = []
         for i, cmat in enumerate(c_matrix):
-            e_matrix.append(
-                qr_coefficents(cmat, data[i])[:cmat.shape[1]]
-            )
+            e_matrix.append(qr_coefficents(cmat, data[i])[: cmat.shape[1]])
 
         return e_matrix

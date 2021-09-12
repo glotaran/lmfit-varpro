@@ -1,4 +1,5 @@
 import math
+
 import numpy as np
 
 
@@ -17,6 +18,6 @@ def assert_epsilon(wanted_value, given_value):
         Given Value
     """
     min_want = np.min(np.abs(wanted_value))
-    epsilon = 10**(math.floor(math.log10(min_want)) - 3)
-    msg = 'Want: {} Have: {} with epsilon {}'.format(wanted_value, given_value, epsilon)
+    epsilon = 10 ** (math.floor(math.log10(min_want)) - 3)
+    msg = f"Want: {wanted_value} Have: {given_value} with epsilon {epsilon}"
     assert np.any(np.abs(wanted_value - given_value) < epsilon), msg
