@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Helper Module to generate the API documentation located at `docs/generate_api_documentation.py`.
 
@@ -30,23 +29,21 @@ To understand how it works in detail the following links might be of help:
 * `Sphinx autodoc Docs  <http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#module-sphinx.ext.autodoc>`_
 """
 
+import logging
 import os
 import pkgutil
-import logging
 
 DOCS_DIR = os.path.abspath(os.path.dirname(__file__))
 TEMPLATE_DIR = os.path.join(DOCS_DIR, "_templates")
 
-API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR,
-                                               "api_documentation_template.rst")
-API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR,
-                                      "api_documentation.rst")
+API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(
+    TEMPLATE_DIR, "api_documentation_template.rst"
+)
+API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR, "api_documentation.rst")
 
-KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR,
-                                            "known_packages_template.rst")
+KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR, "known_packages_template.rst")
 
-KNOWN_PACKAGES_PATH = os.path.join(TEMPLATE_DIR,
-                                   "known_packages.rst")
+KNOWN_PACKAGES_PATH = os.path.join(TEMPLATE_DIR, "known_packages.rst")
 
 
 def generate_api_docs_logger(heading, msg):
@@ -61,11 +58,12 @@ def generate_api_docs_logger(heading, msg):
         Message to be logged
     """
     heading_width = 50
-    decoration_str = "\n" + "#"*heading_width + "\n"
-    heading = "#" + heading.center(heading_width-2) + "#"
-    heading = "{decoration_str}{heading}{decoration_str}\n\n".format(decoration_str=decoration_str,
-                                                                     heading=heading)
-    logging.info(heading+msg+"\n"*2)
+    decoration_str = "\n" + "#" * heading_width + "\n"
+    heading = "#" + heading.center(heading_width - 2) + "#"
+    heading = "{decoration_str}{heading}{decoration_str}\n\n".format(
+        decoration_str=decoration_str, heading=heading
+    )
+    logging.info(heading + msg + "\n" * 2)
 
 
 def traverse_package(package_path, project_root, child_modules=[], child_packages=[]):
@@ -124,7 +122,9 @@ def traverse_package(package_path, project_root, child_modules=[], child_package
 
         if ispkg:
             child_packages.append(import_path)
-            traverse_package(submodule_path, project_root, child_modules, child_packages)
+            traverse_package(
+                submodule_path, project_root, child_modules, child_packages
+            )
 
     if os.path.split(package_path)[0] == project_root:
         msg = "\n".join(child_modules)
@@ -132,13 +132,12 @@ def traverse_package(package_path, project_root, child_modules=[], child_package
         msg = "\n".join(child_packages)
         generate_api_docs_logger("CHILD_PACKAGES", msg)
 
-    return {"child_modules": child_modules,
-            "child_packages": child_packages}
+    return {"child_modules": child_modules, "child_packages": child_packages}
 
 
-def write_api_documentation(child_modules,
-                            api_documentation_template_path,
-                            api_documentation_path):
+def write_api_documentation(
+    child_modules, api_documentation_template_path, api_documentation_path
+):
     """
     Writes a list of all modules and packages which should be documented by
     autosummary to the api documentation at `api_documentation_path` file using
@@ -174,9 +173,9 @@ def write_api_documentation(child_modules,
     generate_api_docs_logger("API_DOCUMENTATION", template_str)
 
 
-def write_known_packages(child_packages, child_modules,
-                         known_packages_template_path,
-                         known_packages_path):
+def write_known_packages(
+    child_packages, child_modules, known_packages_template_path, known_packages_path
+):
     """
     Writes a list of all modules and packages which should be documented by
     autosummary to the known packages file at `known_packages_path` file using
@@ -210,8 +209,9 @@ def write_known_packages(child_packages, child_modules,
     with open(known_packages_template_path) as template:
         template_str = template.read()
 
-    template_str = template_str.format(child_packages_str=child_packages_str,
-                                       child_modules_str=child_modules_str)
+    template_str = template_str.format(
+        child_packages_str=child_packages_str, child_modules_str=child_modules_str
+    )
     with open(known_packages_path, "w") as doc:
         doc.write(template_str)
 
@@ -222,30 +222,31 @@ if __name__ == "__main__":
     DOCS_DIR = os.path.abspath(os.path.dirname(__file__))
     TEMPLATE_DIR = os.path.join(DOCS_DIR, "_templates")
 
-    API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR,
-                                                   "api_documentation_template.rst")
-    API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR,
-                                          "api_documentation.rst")
+    API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(
+        TEMPLATE_DIR, "api_documentation_template.rst"
+    )
+    API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR, "api_documentation.rst")
 
-    KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR,
-                                                "known_packages_template.rst")
+    KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(
+        TEMPLATE_DIR, "known_packages_template.rst"
+    )
 
-    KNOWN_PACKAGES_PATH = os.path.join(TEMPLATE_DIR,
-                                       "known_packages.rst")
+    KNOWN_PACKAGES_PATH = os.path.join(TEMPLATE_DIR, "known_packages.rst")
 
     # uncomment the next line to log funtionoutput for debugging
-    logging.basicConfig(filename='generate_api_documentation.log', level=logging.INFO)
+    logging.basicConfig(filename="generate_api_documentation.log", level=logging.INFO)
     import lmfit_varpro
+
     PACKAGE_ROOT = lmfit_varpro.__path__[0]
     PROJECT_ROOT = os.path.split(PACKAGE_ROOT)[0]
     module_imports = traverse_package(PACKAGE_ROOT, PACKAGE_ROOT)
     child_modules = module_imports["child_modules"]
     child_packages = module_imports["child_packages"]
 
-    write_api_documentation(child_modules,
-                            API_DOCUMENTATION_TEMPLATE_PATH,
-                            API_DOCUMENTATION_PATH)
+    write_api_documentation(
+        child_modules, API_DOCUMENTATION_TEMPLATE_PATH, API_DOCUMENTATION_PATH
+    )
 
-    write_known_packages(child_packages, child_modules,
-                         KNOWN_PACKAGES_TEMPLATE_PATH,
-                         KNOWN_PACKAGES_PATH)
+    write_known_packages(
+        child_packages, child_modules, KNOWN_PACKAGES_TEMPLATE_PATH, KNOWN_PACKAGES_PATH
+    )

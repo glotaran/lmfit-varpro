@@ -9,4 +9,3 @@ Additional Resources
 
 Citation Key
 ------------
-
