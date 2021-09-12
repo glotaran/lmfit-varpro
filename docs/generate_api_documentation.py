@@ -27,7 +27,7 @@ To understand how it works in detail the following links might be of help:
 * `Sphinx autosummary Docs <http://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html?highlight=autosummary%20>`_
 
 * `Sphinx autodoc Docs  <http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#module-sphinx.ext.autodoc>`_
-"""
+"""  # noqa: E501
 
 import logging
 import os

@@ -2,16 +2,12 @@
 Authors
 =======
 
-Original Founder
-----------------
-Ivo van Stokkum <i.h.m.van.stokkum@vu.nl>
-
-
-Development Lead
+Development
 ----------------
 
-* Joris Snellenburg <j.snellenburg@gmail.com>
 * Joern Weissenborn <joern.weissenborn@gmail.com>
+* Stefan Schütz <stefanschuetz.fd@gmail.com>
+* Joris Snellenburg <j.snellenburg@gmail.com>
 
 Contributors
 ------------
@@ -21,5 +17,8 @@ Sebastian Weigand <s.weigand.phy@gmail.com>
 Special Thanks
 --------------
 
-* Stefan Schuetz <YamiNoKeshin@gmail.com>
+* Stefan Schütz <stefanschuetz.fd@gmail.com>
 
+Supervision
+----------------
+Ivo van Stokkum <i.h.m.van.stokkum@vu.nl>
