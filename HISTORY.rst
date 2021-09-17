@@ -2,6 +2,12 @@
 History
 =======
 
+0.0.5-archive (2021-09-12)
+--------------------------
+
+* Updated README
+* Updated AUTHORS.rst
+
 0.0.5 (2018-08-09)
 ------------------
 
@@ -10,7 +16,7 @@ History
 0.0.3 (2018-08-09)
 ------------------
 
-* exposed `nan_policy` option
+* exposed ``nan_policy`` option
 
 0.0.1 (2018-07-22)
 ------------------

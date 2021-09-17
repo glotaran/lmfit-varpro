@@ -12,13 +12,6 @@ Welcome to lmfit-varpro's documentation!
 
 .. toctree::
     :maxdepth: 2
-    :caption: SCIENTIFIC BACKGROUND:
-
-    scientific_docs/abstract
-    scientific_docs/scientific_background
-
-.. toctree::
-    :maxdepth: 2
     :caption: DEVELOPER GUIDE:
 
     contributing

@@ -1,6 +1,6 @@
-* lmfit-varpro version:
-* Python version:
-* Operating System:
+- lmfit-varpro version:
+- Python version:
+- Operating System:
 
 ### Description
 
