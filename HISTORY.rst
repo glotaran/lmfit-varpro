@@ -2,11 +2,12 @@
 History
 =======
 
-0.0.5-archive (2021-10-21)
+0.0.5.post1 (2021-10-21)
 --------------------------
 
 * Updated README
 * Updated AUTHORS.rst
+* Archive of v0.0.5 release
 
 0.0.5 (2018-08-09)
 ------------------

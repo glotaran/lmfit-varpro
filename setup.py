@@ -6,7 +6,7 @@ with open("README.md") as fh:
 
 setuptools.setup(
     name="lmfit-varpro",
-    version="0.0.5-archive",
+    version="0.0.5.post1",
     description="A variable projection implementation for Python/lmfit.",
     long_description=long_description,
     long_description_content_type="text/markdown",
