@@ -36,9 +36,7 @@ import pkgutil
 DOCS_DIR = os.path.abspath(os.path.dirname(__file__))
 TEMPLATE_DIR = os.path.join(DOCS_DIR, "_templates")
 
-API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(
-    TEMPLATE_DIR, "api_documentation_template.rst"
-)
+API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR, "api_documentation_template.rst")
 API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR, "api_documentation.rst")
 
 KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR, "known_packages_template.rst")
@@ -122,9 +120,7 @@ def traverse_package(package_path, project_root, child_modules=[], child_package
 
         if ispkg:
             child_packages.append(import_path)
-            traverse_package(
-                submodule_path, project_root, child_modules, child_packages
-            )
+            traverse_package(submodule_path, project_root, child_modules, child_packages)
 
     if os.path.split(package_path)[0] == project_root:
         msg = "\n".join(child_modules)
@@ -222,14 +218,10 @@ if __name__ == "__main__":
     DOCS_DIR = os.path.abspath(os.path.dirname(__file__))
     TEMPLATE_DIR = os.path.join(DOCS_DIR, "_templates")
 
-    API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(
-        TEMPLATE_DIR, "api_documentation_template.rst"
-    )
+    API_DOCUMENTATION_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR, "api_documentation_template.rst")
     API_DOCUMENTATION_PATH = os.path.join(DOCS_DIR, "api_documentation.rst")
 
-    KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(
-        TEMPLATE_DIR, "known_packages_template.rst"
-    )
+    KNOWN_PACKAGES_TEMPLATE_PATH = os.path.join(TEMPLATE_DIR, "known_packages_template.rst")
 
     KNOWN_PACKAGES_PATH = os.path.join(TEMPLATE_DIR, "known_packages.rst")
 
@@ -243,9 +235,7 @@ if __name__ == "__main__":
     child_modules = module_imports["child_modules"]
     child_packages = module_imports["child_packages"]
 
-    write_api_documentation(
-        child_modules, API_DOCUMENTATION_TEMPLATE_PATH, API_DOCUMENTATION_PATH
-    )
+    write_api_documentation(child_modules, API_DOCUMENTATION_TEMPLATE_PATH, API_DOCUMENTATION_PATH)
 
     write_known_packages(
         child_packages, child_modules, KNOWN_PACKAGES_TEMPLATE_PATH, KNOWN_PACKAGES_PATH

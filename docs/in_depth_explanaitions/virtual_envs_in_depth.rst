@@ -33,11 +33,7 @@ Environment creation
 
 If that is working, create an environment::
 
-    $conda create --name glotaran python=3.6 -y
-
-.. note::  Python 3.7 could also be used, but packages can't be installed with ``conda install packages``
-           right now. If the packages are are on PIPY already they can still be installed with
-           ``pip install package``.
+    $conda create --name glotaran python=3.7 -y
 
 
 De-/Activating an Environment
