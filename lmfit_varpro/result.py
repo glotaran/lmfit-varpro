@@ -16,7 +16,7 @@ class SeparableModelResult(Minimizer):
         equality_constraints,
         *args,
         nan_policy="raise",
-        **kwargs
+        **kwargs,
     ):
         self._model = model
         self.nnls = nnls
@@ -59,9 +59,7 @@ class SeparableModelResult(Minimizer):
         return self._result
 
     def final_residual(self, *args, **kwargs):
-        return np.asarray(
-            [r for r in self._all_residuals(self._result.params, *args, **kwargs)]
-        )
+        return np.asarray([r for r in self._all_residuals(self._result.params, *args, **kwargs)])
 
     def final_residual_svd(self, *args, **kwargs):
         residual = self.final_residual(*args, **kwargs)
@@ -72,13 +70,9 @@ class SeparableModelResult(Minimizer):
     def _residual(self, parameter, *args, **kwargs):
 
         if self.nnls:
-            residuals = np.concatenate(
-                list(self._all_residuals_nnls(parameter, *args, **kwargs))
-            )
+            residuals = np.concatenate(list(self._all_residuals_nnls(parameter, *args, **kwargs)))
         else:
-            residuals = np.concatenate(
-                list(self._all_residuals(parameter, *args, **kwargs))
-            )
+            residuals = np.concatenate(list(self._all_residuals(parameter, *args, **kwargs)))
         return residuals
 
     def _all_residuals(self, parameter, *args, **kwargs):

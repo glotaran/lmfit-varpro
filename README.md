@@ -21,6 +21,6 @@ It should be noted that this code base has not been extensively validated, beyon
 
 ## Credits
 
-The credits can be found in the documentations [credits](https://lmfit-varpro.readthedocs.io/en/latest/credits.html) section 
+The credits can be found in the documentations [credits](https://lmfit-varpro.readthedocs.io/en/latest/credits.html) section
 
 Special thanks goes out to Stefan Schütz, who provided an early C++ prototype and the first Python proof-of-concept code to build on.

@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 from lmfit import Parameters
+from tests.test_helpers import assert_epsilon
 
 from lmfit_varpro import SeparableModel
-from tests.test_helpers import assert_epsilon
 
 
 class OneCompartmentDecay(SeparableModel):
@@ -81,9 +81,7 @@ class MultiChannelMultiCompartmentDecay(SeparableModel):
         delta = np.array([400, 1000, 300, 200, 350, 330])
         amp = np.array([1, 0.1, 10, 100, 1000, 10000])
 
-        E = np.empty(
-            (self.wavenum.shape[0], location.shape[0]), dtype=np.float64, order="F"
-        )
+        E = np.empty((self.wavenum.shape[0], location.shape[0]), dtype=np.float64, order="F")
 
         for i in range(location.size):
             E[:, i] = amp[i] * np.exp(

@@ -37,17 +37,9 @@ class SeparableModel:
             res = np.random.normal(res, std_dev)
         return res
 
-    def fit(
-        self, initial_parameter, nnls, constraints, *args, nan_policy="raise", **kwargs
-    ):
+    def fit(self, initial_parameter, nnls, constraints, *args, nan_policy="raise", **kwargs):
         result = SeparableModelResult(
-            self,
-            initial_parameter,
-            nnls,
-            constraints,
-            nan_policy=nan_policy,
-            *args,
-            **kwargs
+            self, initial_parameter, nnls, constraints, nan_policy=nan_policy, *args, **kwargs
         )
         result.fit(initial_parameter, *args, **kwargs)
         return result
